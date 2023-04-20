@@ -1,86 +1,37 @@
-const express = require('express');
-
-const TodoListContoller = class {
-    /** TODO
-     * 
-     * @param {String} title Task title
-     * @param {String} description Task description
-     *
-     * @returns the Id of the new task 
-    */
-    addTask(title, description) {
-
-    }
-    
-    /** TODO
-     * 
-     * @returns an array of Task objects
-     */
-    getTasks() {
+const TodoListController = class {
+    addTask(req, res) {
 
     }
 
-    /** TODO
-     * 
-     * @param {Number} id
-     * 
-     * @returns a Task Object 
-     */
-    getTask(id) {
+    getTasks(req, res) {
 
     }
 
-    /** TODO
-     * 
-     * @param {Number} id Task Id
-     * @param {String} title Task title
-     * @param {String} description Task description
-     * 
-     * @returns true if the task was updated successfully / false otherwise
-     */
-    updateTask(id, title, description) {
+    getTask(req, res) {
 
     }
 
-    /** TODO
-     * 
-     * @param {Number} id Task Id
-     * 
-     * @returns true if the task was deleted successfully / false otherwise
-     */
-    deleteTask(id) {
+    updateTask(req, res) {
 
     }
 
-    /** TODO
-     * 
-     * @param {Number} id Task Id
-     */
-    checkTask(id) {
+    deleteTask(req, res) {
 
     }
 
-    /** TODO
-     * 
-     * @param {Number} id Task Id
-     */
-    unCheckTask(id) {
+    checkTask(req, res) {
 
     }
 
-    /** TODO
-     * 
-     * @param {Number} id Task Id
-     */
-    pinTask(id) {
+    unCheckTask(req, res) {
 
     }
 
-    /** TODO
-     * 
-     * @param {Number} id Task Id
-     */
-    unPinTask(id) {
-        
+    pinTask(req, res) {
+
     }
-};
+
+    unPinTask(req, res) {
+
+    }
+}
