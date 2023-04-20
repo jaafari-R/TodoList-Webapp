@@ -1,0 +1,23 @@
+{
+  "name": "todolist-backend",
+  "version": "1.0.0",
+  "description": "A todo-list app api",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaafari-R/TodoList-Webapp.git"
+  },
+  "author": "Ramadan Jaafari",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaafari-R/TodoList-Webapp/issues"
+  },
+  "homepage": "https://github.com/jaafari-R/TodoList-Webapp#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
