@@ -1,3 +1,5 @@
+taskModel = require('./models/task');
+
 const TodoListModel = class {
     /** TODO
      * 

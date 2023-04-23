@@ -1,5 +1,6 @@
 const express = require('express');
-const connectDB = require('./model/connect')
+const connectDB = require('./db/connect');
+require('dotenv').config();
 
 const todolistRouter = require('./routes/todolist');
 
@@ -17,7 +18,7 @@ app.use('/api/v1/todolist/', todolistRouter);
 const main = async() => {
     try {
         // Connect to DB
-        await connectDB();
+        await connectDB(process.env.DB_URL);
         // Start App/Server
         app.listen(PORT, () => {
             console.log(`Server is listening on port ${PORT}`);

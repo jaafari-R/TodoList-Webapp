@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
 
-const DB_URL = "mongodb://localhost/todolist";
-
-const connectDB = () => {
+const connectDB = (dbURL) => {
     return mongoose
-    .connect(DB_URL)
+    .connect(dbURL)
     .then(() => console.log('Connected to MongoDB successfully!'))
     .catch((err) => console.log("Failed to connect to MongoDB\n", err));
 }
