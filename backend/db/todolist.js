@@ -1,6 +1,18 @@
 taskModel = require('./models/task');
 
 const TodoListModel = class {
+    
+    constructor() {
+        // Id Auto Increment
+        taskModel.findOne({}, {}, {sort: {'id': -1 } })
+            .then((lastDocument) => {
+                this.idAI = lastDocument.id + 1;
+            })
+            .catch((err) => {
+                this.idAI = 1
+            });
+    }
+
     /** TODO
      * 
      * @param {String} title Task title
@@ -9,7 +21,18 @@ const TodoListModel = class {
      * @returns the Id of the new task 
     */
     addTask(title, description) {
-
+        try {
+            new taskModel({
+                id: this.idAI,
+                title: title,
+                description: description
+            }).save();
+            return this.idAI++;
+        }
+        catch (err) {
+            console.log("Failed to add Task\n", err);
+            return undefined;
+        }
     }
     
     /** TODO
@@ -84,3 +107,5 @@ const TodoListModel = class {
         
     }
 };
+
+module.exports = new TodoListModel();

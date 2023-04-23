@@ -1,7 +1,15 @@
-const TodoListController = class {
-    // TODO
-    addTask(req, res) {
+todoListModel = require('../db/todolist')
 
+const TodoListController = class {
+    async addTask (req, res) {
+        const name = req.body.title;
+        const description = req.body.description;
+
+        const newTaskId = await todoListModel.addTask(name, description);
+        if(newTaskId)
+            res.json({success: "true", taskId: newTaskId});
+        else
+            res.json({success: "false"});
     }
 
     // TODO
