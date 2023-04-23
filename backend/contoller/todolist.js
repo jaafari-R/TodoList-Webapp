@@ -13,8 +13,12 @@ const TodoListController = class {
     }
 
     // TODO
-    getTasks(req, res) {
-
+    async getTasks(req, res) {
+        const tasks = await todoListModel.getTasks();
+        if(tasks)
+            res.json({success: "true", tasks});
+        else
+            res.json({success: "false"})
     }
 
     // TODO

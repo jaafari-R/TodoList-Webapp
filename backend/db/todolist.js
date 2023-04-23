@@ -40,7 +40,13 @@ const TodoListModel = class {
      * @returns an array of Task objects
      */
     getTasks() {
-
+        try {
+            return taskModel.find({});
+        }
+        catch(err) {
+            console.log("Failed to retrieve tasks from DB\n", err)
+            return undefined;
+        }
     }
 
     /** TODO
