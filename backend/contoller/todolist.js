@@ -7,9 +7,9 @@ const TodoListController = class {
 
         const newTaskId = await todoListModel.addTask(name, description);
         if(newTaskId)
-            res.json({success: "true", taskId: newTaskId});
+            res.status(201).json({success: "true", taskId: newTaskId});
         else
-            res.json({success: "false"});
+            res.status(500).json({success: "false", msg: "Failed to create task"});
     }
 
     // TODO
@@ -18,7 +18,7 @@ const TodoListController = class {
         if(tasks)
             res.json({success: "true", tasks});
         else
-            res.json({success: "false"})
+            res.status(500).json({success: "false", msg: "Failed to retrieve takss"})
     }
 
     // TODO
