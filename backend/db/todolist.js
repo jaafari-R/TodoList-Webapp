@@ -131,7 +131,7 @@ const TodoListModel = class {
     /** TODO - add custom errors
      * 
      * @param {Number} id Task Id
-     * @param {Boolean} on check/mark task ==> true | uncheck/unmark task ===> false 
+     * @param {Boolean} on check task ==> true | uncheck task ===> false 
      * 
      * @returns true if the task was checked/unchecked successfully / null otherwise
      */
@@ -154,20 +154,28 @@ const TodoListModel = class {
         })
     }
 
-    /** TODO
+    /** TODO - add custom errors
      * 
      * @param {Number} id Task Id
+     * @param {Boolean} on pin task ==> true | unpin task ===> false 
      */
-    pinTask(id) {
-
-    }
-
-    /** TODO
-     * 
-     * @param {Number} id Task Id
-     */
-    unPinTask(id) {
-        
+    pinTask(id, on) {
+        return new Promise((res, rej) => {
+            taskModel.updateOne({id: id}, [ { $set: {pinned: on} } ])
+                .then((db_res) => {
+                    if(db_res.modifiedCount)
+                        res(true);
+                    else
+                    {
+                        console.log("document unchanged or Failed to pin/unpin non-existing document in db\n");
+                        rej(null);
+                    }
+                })
+                .catch((err) => {
+                    console.log("Failed to pin/unpin task in the DB\n", err, "\n");
+                    rej(null);
+                })
+        })
     }
 };
 

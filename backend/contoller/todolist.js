@@ -72,20 +72,29 @@ const TodoListController = class {
     checkTask(req, res) {
         const taskId = Number(req.params.id);
         const check = Boolean(req.body.check); // true indicates check / false indicates un-check
-        console.log(req.body, check)
 
         todoListModel.checkTask(taskId, check)
             .then(() => {
                 res.status(200).json({success: true});
             })
             .catch(() => {
-                res.status(500).json({success: false, msg: "Failed to check/mark task"});
+                res.status(500).json({success: false, msg: "Failed to check task"});
             })
     }
 
     // TODO
     pinTask(req, res) {
+        const taskId = Number(req.params.id);
+        const pin = Boolean(req.body.pin); // true indicates pin / false indicates un-pin
+        console.log(pin);
 
+        todoListModel.pinTask(taskId, pin)
+            .then(() => {
+                res.status(200).json({success: true});
+            })
+            .catch(() => {
+                res.status(500).json({success: false, msg: "Failed to pin task"});
+            })
     }
 }
 
