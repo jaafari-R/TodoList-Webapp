@@ -62,7 +62,7 @@ const TodoListModel = class {
      */
     getTask(id) {
         return new Promise((res, rej) => {
-            taskModel.find({"id": id})
+            taskModel.find({id: id})
                 .then((task) => {
                     if(task.length != 0)
                         res(task[0]);
@@ -86,13 +86,13 @@ const TodoListModel = class {
      */
     async updateTask(id, title, description) {
         return new Promise((res, rej) => {
-            taskModel.updateOne({id: id}, [ {$set: {title, description} } ])
+            taskModel.updateOne({id: id}, [ { $set: {title, description} } ])
                 .then((db_res) => {
                     if(db_res.modifiedCount)
                         res(true);
                     else
                     {
-                        console.log("Failed to update non-existing document in db\n");
+                        console.log("document unchanged or Failed to update non-existing document in db\n");
                         rej(null);
                     }
                 })
@@ -128,20 +128,30 @@ const TodoListModel = class {
     })
     }
 
-    /** TODO
+    /** TODO - add custom errors
      * 
      * @param {Number} id Task Id
-     */
-    checkTask(id) {
-
-    }
-
-    /** TODO
+     * @param {Boolean} on check/mark task ==> true | uncheck/unmark task ===> false 
      * 
-     * @param {Number} id Task Id
+     * @returns true if the task was checked/unchecked successfully / null otherwise
      */
-    unCheckTask(id) {
-
+    checkTask(id, on) {
+        return new Promise((res, rej) => {
+            taskModel.updateOne({id: id}, [ { $set: {checked: on} } ])
+                .then((db_res) => {
+                    if(db_res.modifiedCount)
+                        res(true);
+                    else
+                    {
+                        console.log("document unchanged or Failed to check/uncheck non-existing document in db\n");
+                        rej(null);
+                    }
+                })
+                .catch((err) => {
+                    console.log("Failed to check/uncheck task in the DB\n", err, "\n");
+                    rej(null);
+                })
+        })
     }
 
     /** TODO
