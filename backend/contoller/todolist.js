@@ -86,7 +86,6 @@ const TodoListController = class {
     pinTask(req, res) {
         const taskId = Number(req.params.id);
         const pin = Boolean(req.body.pin); // true indicates pin / false indicates un-pin
-        console.log(pin);
 
         todoListModel.pinTask(taskId, pin)
             .then(() => {
