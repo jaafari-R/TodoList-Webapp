@@ -5,20 +5,23 @@ const TodoListController = class {
         const name = req.body.title;
         const description = req.body.description;
 
-        const newTaskId = await todoListModel.addTask(name, description);
-        if(newTaskId)
-            res.status(201).json({success: "true", taskId: newTaskId});
-        else
-            res.status(500).json({success: "false", msg: "Failed to create task"});
+        await todoListModel.addTask(name, description)
+            .then((taskId) => {
+                res.status(201).json({success: "true", taskId});
+            })
+            .catch(() => {
+                res.status(500).json({success: "false", msg: "Failed to create task"});
+            })
     }
 
-    // TODO
     async getTasks(req, res) {
-        const tasks = await todoListModel.getTasks();
-        if(tasks)
-            res.json({success: "true", tasks});
-        else
-            res.status(500).json({success: "false", msg: "Failed to retrieve takss"})
+        todoListModel.getTasks()
+            .then((tasks) => {
+                res.json({success: "true", tasks});
+            })
+            .catch(() => {
+                res.status(500).json({success: "false", msg: "Failed to retrieve tasks"})
+            })
     }
 
     // TODO

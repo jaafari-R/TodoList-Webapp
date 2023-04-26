@@ -21,18 +21,20 @@ const TodoListModel = class {
      * @returns the Id of the new task 
     */
     addTask(title, description) {
-        try {
+        return new Promise((res, rej) => {
             new taskModel({
                 id: this.idAI,
                 title: title,
                 description: description
-            }).save();
-            return this.idAI++;
-        }
-        catch (err) {
-            console.log("Failed to add Task\n", err);
-            return undefined;
-        }
+            }).save()
+                .then((task) => {
+                    res(this.idAI++);
+                })
+                .catch((err) => {
+                    console.log("Failed to add Task\n", err, "\n");
+                    rej(null);    
+                });
+        })
     }
     
     /** TODO
@@ -40,14 +42,17 @@ const TodoListModel = class {
      * @returns an array of Task objects
      */
     getTasks() {
-        try {
-            return taskModel.find({});
+        return new Promise((res, rej) => {
+            taskModel.find({})
+                .then((tasks) => {
+                    res(tasks);
+                })
+                .catch((err) => {
+                    console.log("Failed to retrieve tasks from DB\n", err, "\n")
+                    rej(null);
+                })
+            })
         }
-        catch(err) {
-            console.log("Failed to retrieve tasks from DB\n", err)
-            return undefined;
-        }
-    }
 
     /** TODO
      * 
