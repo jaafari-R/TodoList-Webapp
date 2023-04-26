@@ -18,7 +18,7 @@ const TodoListModel = class {
      * @param {String} title Task title
      * @param {String} description Task description
      *
-     * @returns the Id of the new task 
+     * @returns the Id of the new task  / null on failure
     */
     addTask(title, description) {
         return new Promise((res, rej) => {
@@ -39,7 +39,7 @@ const TodoListModel = class {
     
     /**
      * 
-     * @returns an array of Task objects
+     * @returns an array of Task objects / null on failure
      */
     getTasks() {
         return new Promise((res, rej) => {
@@ -58,7 +58,7 @@ const TodoListModel = class {
      * 
      * @param {Number} id
      * 
-     * @returns a Task Object 
+     * @returns a Task Object / null on failure
      */
     getTask(id) {
         return new Promise((res, rej) => {
@@ -76,16 +76,35 @@ const TodoListModel = class {
         })
     }
 
-    /** TODO
+    /** TODO - add custom errors
      * 
      * @param {Number} id Task Id
      * @param {String} title Task title
      * @param {String} description Task description
      * 
-     * @returns true if the task was updated successfully / false otherwise
+     * @returns true if the task was updated successfully / null otherwise
      */
-    updateTask(id, title, description) {
+    async updateTask(id, title, description) {
+        let taskExists = false;
 
+        await this.getTask(id)
+            .then(() => {
+                taskExists = true;
+            })
+        
+        return new Promise((res, rej) => {
+            if(taskExists)
+                taskModel.updateOne({id: id}, [ {$set: {title, description} } ])
+                    .then(() => {
+                        res(true);
+                    })
+                    .catch((err) => {
+                        console.log("Failed to update task in DB\n", err, "\n");
+                        rej(null);
+                    })
+            else
+                rej(null) // task does not exist
+        });
     }
 
     /** TODO

@@ -40,7 +40,17 @@ const TodoListController = class {
 
     // TODO
     updateTask(req, res) {
+        const taskId = req.params.id;
+        const title = req.body.title;
+        const description = req.body.description;
 
+        todoListModel.updateTask(taskId, title, description)
+            .then(() => {
+                res.status(200).json({success: "true"});
+            })
+            .catch(() => {
+                res.status(500).json({success: "false", msg: "Failed to edit task"});
+            })
     }
 
     // TODO
