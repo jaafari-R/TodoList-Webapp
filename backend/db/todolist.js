@@ -13,7 +13,7 @@ const TodoListModel = class {
             });
     }
 
-    /** TODO
+    /**
      * 
      * @param {String} title Task title
      * @param {String} description Task description
@@ -37,7 +37,7 @@ const TodoListModel = class {
         })
     }
     
-    /** TODO
+    /**
      * 
      * @returns an array of Task objects
      */
@@ -48,20 +48,32 @@ const TodoListModel = class {
                     res(tasks);
                 })
                 .catch((err) => {
-                    console.log("Failed to retrieve tasks from DB\n", err, "\n")
+                    console.log("Failed to retrieve tasks from DB\n", err, "\n");
                     rej(null);
                 })
             })
         }
 
-    /** TODO
+    /** TODO create custom errors
      * 
      * @param {Number} id
      * 
      * @returns a Task Object 
      */
     getTask(id) {
-
+        return new Promise((res, rej) => {
+            taskModel.find({"id": id})
+                .then((task) => {
+                    if(task.length != 0)
+                        res(task[0]);
+                    else
+                        rej(null) // "Task Does not exist"
+                })
+                .catch((err) => {
+                    console.log("Failed to retrieve task from DB\n", err, "\n");
+                    rej(null);
+                })
+        })
     }
 
     /** TODO

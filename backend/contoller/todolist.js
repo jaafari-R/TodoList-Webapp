@@ -17,16 +17,25 @@ const TodoListController = class {
     async getTasks(req, res) {
         todoListModel.getTasks()
             .then((tasks) => {
-                res.json({success: "true", tasks});
+                res.status(200).json({success: "true", tasks});
             })
             .catch(() => {
-                res.status(500).json({success: "false", msg: "Failed to retrieve tasks"})
+                res.status(500).json({success: "false", msg: "Failed to retrieve tasks"});
             })
     }
 
     // TODO
     getTask(req, res) {
+        const taskId = Number(req.params.id)
 
+        todoListModel.getTask(taskId)
+            .then((task) => 
+            {
+                res.status(200).json({success: "true", task});
+            })
+            .catch(() => {
+                res.status(500).json({success: "false", msg: "Failt to retrieve task"});
+            })
     }
 
     // TODO
