@@ -24,8 +24,8 @@ const TodoListController = class {
             })
     }
 
-    // TODO
-    getTask(req, res) {
+    // TODO- add custom errors
+    async getTask(req, res) {
         const taskId = Number(req.params.id)
 
         todoListModel.getTask(taskId)
@@ -38,9 +38,9 @@ const TodoListController = class {
             })
     }
 
-    // TODO
-    updateTask(req, res) {
-        const taskId = req.params.id;
+    // TODO- add custom errors
+    async updateTask(req, res) {
+        const taskId = Number(req.params.id);
         const title = req.body.title;
         const description = req.body.description;
 
@@ -53,9 +53,17 @@ const TodoListController = class {
             })
     }
 
-    // TODO
-    deleteTask(req, res) {
+    // TODO - add custom errors
+    async deleteTask(req, res) {
+        const taskId = Number(req.params.id);
 
+        todoListModel.deleteTask(taskId)
+            .then(() => {
+                res.status(200).json({success: true});
+            })
+            .catch(() => {
+                res.status(500).json({success: "false", msg: "Failed to delete task"});
+            })
     }
 
     // TODO

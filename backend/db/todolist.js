@@ -85,36 +85,47 @@ const TodoListModel = class {
      * @returns true if the task was updated successfully / null otherwise
      */
     async updateTask(id, title, description) {
-        let taskExists = false;
-
-        await this.getTask(id)
-            .then(() => {
-                taskExists = true;
-            })
-        
         return new Promise((res, rej) => {
-            if(taskExists)
-                taskModel.updateOne({id: id}, [ {$set: {title, description} } ])
-                    .then(() => {
+            taskModel.updateOne({id: id}, [ {$set: {title, description} } ])
+                .then((db_res) => {
+                    if(db_res.modifiedCount)
                         res(true);
-                    })
-                    .catch((err) => {
-                        console.log("Failed to update task in DB\n", err, "\n");
+                    else
+                    {
+                        console.log("Failed to update non-existing document in db\n");
                         rej(null);
-                    })
-            else
-                rej(null) // task does not exist
+                    }
+                })
+                .catch((err) => {
+                    console.log("Failed to update task in DB\n", err, "\n");
+                    rej(null);
+                })
         });
     }
 
-    /** TODO
+    /** TODO - add custom errors
      * 
      * @param {Number} id Task Id
      * 
-     * @returns true if the task was deleted successfully / false otherwise
+     * @returns true if the task was deleted successfully / null otherwise
      */
-    deleteTask(id) {
-
+    async deleteTask(id) {
+        return new Promise((res, rej) => {
+            taskModel.deleteOne({id: id})
+                .then((db_res) => {
+                    if(db_res.deletedCount)
+                        res(true);
+                    else
+                    {
+                        console.log("Failed to delete non-existing document from db\n");
+                        rej(null);
+                    }
+                })
+                .catch((err) => {
+                    console.log("Failed to delete task from DB\n", err, "\n");
+                    rej(null);
+                })
+    })
     }
 
     /** TODO
