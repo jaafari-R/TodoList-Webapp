@@ -4,12 +4,15 @@ require('dotenv').config();
 
 const todolistRouter = require('./routes/todolist');
 
-const PORT = 5000;
-
 const app = express();
 
 // Middleware
 app.use(express.json())
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL);
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
 // routers
 app.use('/api/v1/todolist/', todolistRouter);
@@ -20,8 +23,8 @@ const main = async() => {
         // Connect to DB
         await connectDB(process.env.DB_URL);
         // Start App/Server
-        app.listen(PORT, () => {
-            console.log(`Server is listening on port ${PORT}`);
+        app.listen(Number(process.env.PORT), () => {
+            console.log(`Server is listening on port ${process.env.PORT}`);
         });
     }
     catch (err){
