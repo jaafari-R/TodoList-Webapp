@@ -1,26 +1,35 @@
-.create__form {
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 15px;
-    border-color: #888;
-    background-color: #e5e2fc;
-    margin-left: 25%;
-    margin-right: 25%;
+.create-task {
+    background-color: #eee;
+    border: solid .2rem;
+    border-radius: 3rem;
+    padding: 2rem;
+    padding-top: 0rem;
 }
 
-.create__input {
+.create-task input, .create-task button, .create-task textarea {
+    margin: .4rem;
+    padding: .8rem;
+    width: 100%;
+    border-radius: .8rem;
+    line-height: 1.2rem;
+    letter-spacing: .04rem;
+}
+
+.create-task h1 {
+    margin-top: 0.5rem;
     text-align: center;
-    width: 80%;
-    margin: 5px;
-    font-size: large;
-    border-radius: 10px;
 }
 
-.create__taskDescription {
-    text-align: left;
-    text-indent: 2%;
-    width: 80%;
-    margin: 5px;
-    border-radius: 10px;
-    font-size: large;
+.create-taskTitle {
+    text-align: center;
+}
+
+.create-taskDescription {
+    height: 5rem;
+}
+
+.create-taskButton {
+    background: #39e68f;
+    color: #501d1d;
+    font-weight: 600;
 }

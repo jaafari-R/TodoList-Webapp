@@ -8,7 +8,6 @@ import TaskView from './components/TaskView';
 function App() {
   return (
     <div className="App">
-      <h1>Frontend</h1>
       <TaskCreate />
       <br />
       <TaskView />
