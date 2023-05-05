@@ -1,0 +1,18 @@
+.view-task {
+    position: relative;
+    border: solid 0.2rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    padding-top: 0;
+}
+
+.view-task h2 {
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.view-taskPin {
+    position: absolute;
+    top: 0.2rem;
+    right: 0.2rem;
+}
