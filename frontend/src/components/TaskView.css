@@ -1,18 +1,62 @@
 .view-task {
     position: relative;
-    border: solid 0.2rem;
-    border-radius: 1rem;
-    padding: 1rem;
-    padding-top: 0;
+    border: solid 0.2em;
+    border-radius: 1em;
+    padding: 0;
 }
 
-.view-task h2 {
+.view-taskContent {
+    padding: 0em;
+    padding-inline: 3em;
     margin-top: 0.5rem;
+
+}
+
+.view-taskContent h2 {
+    margin: 0;
     text-align: center;
 }
 
 .view-taskPin {
     position: absolute;
-    top: 0.2rem;
-    right: 0.2rem;
+    top: 0.2em;
+    right: 0.2em;
+}
+
+.view-taskCheck {
+    position: absolute;
+    top: 0.2em;
+    right: 2.2em;
+    border: none;
+    border-radius: 1em;
+    padding: 0.5em;
+}
+
+.view-taskCheck:checked {
+    background-color: green;
+}
+
+.view-taskDelete, .view-taskEdit {
+    width: 50%;
+    margin: 0;
+    border: none;
+    border-top: solid 0.1em;
+}
+
+.view-taskDelete {
+    border-bottom-right-radius: 1em;
+    background-color: rgb(252, 100, 100);
+}
+
+.view-taskDelete:hover {
+    background-color: rgb(250, 78, 78);
+}
+
+.view-taskEdit {
+    border-bottom-left-radius: 1em;
+    background-color: rgb(255, 255, 152);
+}
+
+.view-taskEdit:hover {
+    background-color: rgb(255, 255, 152);
 }
