@@ -6,6 +6,12 @@ import TaskEdit from './components/TaskEdit';
 import TaskView from './components/TaskView';
 
 function App() {
+
+  const getAllTasks = () => {
+    
+  }
+
+  // TODO
   const editTask = () => {
 
 
