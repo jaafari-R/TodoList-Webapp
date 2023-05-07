@@ -20,6 +20,16 @@ const TodoListAPI = class {
             })
             .catch((err) => console.log(err));
     }
+    
+    getAllTasks() {
+        return new Promise((res, rej) => {
+            axios.get(API_URL + "/get")
+            .then((server_response) => {
+                res(server_response.data.tasks);
+            })
+            .catch((err) => console.log(err));
+        });
+    }
 }
 
 export const todoListAPI = new TodoListAPI();

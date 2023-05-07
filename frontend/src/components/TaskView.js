@@ -24,7 +24,7 @@ function TaskView({taskId, taskTitle, taskDescription, taskCheck, taskPin, editT
     <div className='view-task'>
       <div className="view-taskContent">
         <h2>{title || "Unknown"}</h2>
-        <p>{description}</p>
+        <p>{description || "Unknown"}</p>
       </div>
       {
         pin && <PushPinIcon onClick={pinTask} className='view-taskPin' /> || <PushPinOutlinedIcon onClick={pinTask} className='view-taskPin' />

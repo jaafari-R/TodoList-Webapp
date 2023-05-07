@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import './App.css';
 
 import "./components/TaskCreate"
@@ -5,11 +6,19 @@ import TaskCreate from './components/TaskCreate';
 import TaskEdit from './components/TaskEdit';
 import TaskView from './components/TaskView';
 
-function App() {
+import { todoListAPI } from './TodoListAPI';
 
-  const getAllTasks = () => {
-    
-  }
+function App() {
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    todoListAPI.getAllTasks()
+      .then((res_tasks) => {
+        setTasks(res_tasks);
+        })
+      .catch((err) => {console.log(err)});
+      
+  }, []);
 
   // TODO
   const editTask = () => {
@@ -23,7 +32,16 @@ function App() {
     <div className="App">
       <TaskCreate />
       <br />
-      <TaskView taskId="1" taskTitle="Task Title" taskDescription="Task Description" taskPin={false} editTask={editTask} />
+      {tasks.map(task =>
+        <TaskView
+          key={task.id}
+          taskId={task.id}
+          taskTitle={task.title}
+          taskDescription={task.description}
+          taskPin={task.pin}
+          taskCheck={task.check}
+        />)
+      }
       <br />
       <TaskEdit />
     </div>

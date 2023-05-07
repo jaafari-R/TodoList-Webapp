@@ -32,7 +32,7 @@ function TaskCreate() {
             <h1>Create a Task</h1>
             <input className="create-taskTitle" id="taskTitle" type="text" value={taskTitle} onChange={updateTaskTitle} placeholder='Task Title'/>
             <br />
-            <textarea className="create-taskDescription" name="taskDescription" id="taskDescription" cols="30" rows="10 value={taskDescription} onChange={updateTaskDescription}" placeholder='Task Description'></textarea>
+            <textarea className="create-taskDescription" name="taskDescription" id="taskDescription" cols="30" rows="10" value={taskDescription} onChange={updateTaskDescription} placeholder='Task Description'></textarea>
             <br />
             <button className="create-taskButton" onClick={createTask}>Create Task</button>
         </form>
