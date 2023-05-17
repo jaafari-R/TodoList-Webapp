@@ -12,8 +12,8 @@ router.put('/update/:id', Contoller.updateTask);
 
 router.delete('/delete/:id', Contoller.deleteTask);
 
-router.post('/check/:id', Contoller.checkTask);
+router.put('/check/:id', Contoller.checkTask);
 
-router.post('/pin/:id', Contoller.pinTask);
+router.put('/pin/:id', Contoller.pinTask);
 
 module.exports = router;
