@@ -114,7 +114,31 @@ const TodoListAPI = class {
         })
     }
 
-    
+    /**
+     * 
+     * @param {Number} taskId 
+     * @param {String} taskTitle 
+     * @param {String} taskDescription 
+     * @returns a Promise depending on the api call response:
+     *              - on success - success in the format: { success: true }
+     *              - on failure - error in the format: { success: false, msg: {String} }
+     *              - on no-response - undefined
+     */
+    editTask(taskId, taskTitle, taskDescription) {
+        return new Promise((res, rej) => {
+            this.axios.put("/update/" + taskId)
+            .then((response) => {
+                res(response.data);
+            })
+            .catch((err) => 
+            {
+                if(err.response)
+                    rej(err.response.data)
+                else
+                    rej(undefined)
+            });
+        })
+    }
 }
 
 export const todoListAPI = new TodoListAPI();

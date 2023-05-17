@@ -40,6 +40,7 @@ function App() {
           taskDescription={task.description}
           taskPin={task.pin}
           taskCheck={task.check}
+          editTask={editTask}
         />)
       }
       <br />
