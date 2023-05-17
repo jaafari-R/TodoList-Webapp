@@ -15,7 +15,7 @@ const TodoListAPI = class {
      *              - on success - data in the format: 
      *                  { success: true,
      *                    taskId: {Number} }
-     *              - on failure - data in the format: {success: false, msg: {String} }
+     *              - on failure - error in the format: { success: false, msg: {String} }
      *              - on no-response - undefined
      */
     createTask(taskTitle, taskDescription) {
@@ -45,7 +45,7 @@ const TodoListAPI = class {
      *              - on success - data in the format: 
      *                  { success: true,
      *                    tasks: [ {_id, id, title, description, checked, pinned, __v}, ...] }
-     *              - on failure - data in the format: {success: false, msg: {String} }
+     *              - on failure - error in the format: { success: false, msg: {String} }
      *              - on no-response - undefined
      */
     getAllTasks() {
@@ -71,7 +71,7 @@ const TodoListAPI = class {
      *              - on success - data in the format: 
      *                  { success: true,
      *                    task: {_id, id, title, description, checked, pinned, __v} }
-     *              - on failure - data in the format: {success: false, msg: {String} }
+     *              - on failure - error in the format: { success: false, msg: {String} }
      *              - on no-response - undefined
      */
     getTask(taskId) {
@@ -89,6 +89,32 @@ const TodoListAPI = class {
             });
         })
     }
+
+    /**
+     * 
+     * @param {Number} taskId 
+     * @returns a Promise depending on the api call response:
+     *              - on success - success in the format: { success: true }
+     *              - on failure - error in the format: { success: false, msg: {String} }
+     *              - on no-response - undefined
+     */
+    deleteTask(taskId) {
+        return new Promise((res, rej) => {
+            this.axios.delete("/delete/" + taskId)
+            .then((response) => {
+                res(response.data);
+            })
+            .catch((err) => 
+            {
+                if(err.response)
+                    rej(err.response.data)
+                else
+                    rej(undefined)
+            });
+        })
+    }
+
+    
 }
 
 export const todoListAPI = new TodoListAPI();
