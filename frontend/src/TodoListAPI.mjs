@@ -139,6 +139,35 @@ const TodoListAPI = class {
             });
         })
     }
+
+    /**
+     * 
+     * @param {Number} taskId 
+     * @param {Boolean} mark 
+     * @returns a Promise depending on the api call response:
+     *              - on success - success in the format: { success: true }
+     *              - on failure - error in the format: { success: false, msg: {String} }
+     *              - on no-response - undefined
+     */
+    markTask(taskId, mark) {
+        return new Promise((res, rej) => 
+        {
+            this.axios.put(`/check/${taskId}`,
+            {
+                check: mark
+            })
+            .then((response) => {
+                res(response.data);
+            })
+            .catch((err) => 
+            {
+                if(err.response)
+                    rej(err.response.data)
+                else
+                    rej(undefined)
+            });
+        })
+    }
 }
 
 export const todoListAPI = new TodoListAPI();
