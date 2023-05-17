@@ -8,9 +8,9 @@ const TodoListAPI = class {
     }
 
     /**
+     * 
      * @param {String} taskTitle 
      * @param {String} taskDescription
-     * 
      * @returns a Promise depending on the api call response:
      *              - on success - data in the format: 
      *                  { success: true,
@@ -62,6 +62,32 @@ const TodoListAPI = class {
                     rej(undefined)
             });
         });
+    }
+
+    /**
+     * 
+     * @param {Number} taskId 
+     * @returns a Promise depending on the api call response:
+     *              - on success - data in the format: 
+     *                  { success: true,
+     *                    task: {_id, id, title, description, checked, pinned, __v} }
+     *              - on failure - data in the format: {success: false, msg: {String} }
+     *              - on no-response - undefined
+     */
+    getTask(taskId) {
+        return new Promise((res, rej) => {
+            this.axios.get("/get/" + taskId)
+            .then((response) => {
+                res(response.data);
+            })
+            .catch((err) => 
+            {
+                if(err.response)
+                    rej(err.response.data)
+                else
+                    rej(undefined)
+            });
+        })
     }
 }
 
