@@ -126,7 +126,12 @@ const TodoListAPI = class {
      */
     editTask(taskId, taskTitle, taskDescription) {
         return new Promise((res, rej) => {
-            this.axios.put("/update/" + taskId)
+            this.axios.put("/update/" + taskId,
+                {
+                    title: taskTitle,
+                    description: taskDescription
+                }
+            )
             .then((response) => {
                 res(response.data);
             })
