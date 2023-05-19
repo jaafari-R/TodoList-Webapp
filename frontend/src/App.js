@@ -65,6 +65,7 @@ function App() {
           taskPin={task.pin}
           taskCheck={task.check}
           editTask={editTask}
+          notify={notify}
         />)
       }
       <br />

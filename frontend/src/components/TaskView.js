@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import PushPinIcon from '@mui/icons-material/PushPin';
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 
+import { todoListAPI } from '../api/TodoListAPI';
+
 import './TaskView.css'
 
 
-function TaskView({taskId, taskTitle, taskDescription, taskCheck, taskPin, editTask}) {
+function TaskView({taskId, taskTitle, taskDescription, taskCheck, taskPin, editTask, notify}) {
   const [id, setId] = useState(taskId);
   const [title, setTitle] = useState(taskTitle);
   const [description, setDescription] = useState(taskDescription);
@@ -20,6 +22,20 @@ function TaskView({taskId, taskTitle, taskDescription, taskCheck, taskPin, editT
     setPin(!pin);
   }
 
+  const deleteTask = () => {
+    if(!window.confirm(`Are you sure you want to delete <${title}>`))
+      return;
+
+    todoListAPI.deleteTask(id)
+      .then((response) => {
+        notify({...response, msg: `${title} was deleted`})
+      })
+      .catch((response) => {
+        console.log(response)
+        notify(response);
+      })
+  }
+
   return (
     <div className='view-task'>
       <div className="view-taskContent">
@@ -31,7 +47,7 @@ function TaskView({taskId, taskTitle, taskDescription, taskCheck, taskPin, editT
       }
       <button className='view-taskCheck'>Done</button>
       <button className='view-taskEdit' onClick={showEditForm}>Edit</button>
-      <button className='view-taskDelete'>Delete</button>
+      <button className='view-taskDelete' onClick={deleteTask}>Delete</button>
     </div>
   )
 }
