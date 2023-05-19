@@ -16,6 +16,7 @@ function App() {
   useEffect(() => {
     todoListAPI.getAllTasks()
       .then((response) => {
+        console.log(response.tasks)
         setTasks(response.tasks);
       })
       .catch((err) => {
@@ -62,8 +63,8 @@ function App() {
           taskId={task.id}
           taskTitle={task.title}
           taskDescription={task.description}
-          taskPin={task.pin}
-          taskCheck={task.check}
+          taskPin={task.pinned}
+          taskCheck={task.checked}
           editTask={editTask}
           notify={notify}
         />)

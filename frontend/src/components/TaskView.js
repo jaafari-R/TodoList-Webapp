@@ -18,8 +18,18 @@ function TaskView({taskId, taskTitle, taskDescription, taskCheck, taskPin, editT
     editTask(id, title, description);
   }
 
-  const pinTask = () => {
-    setPin(!pin);
+  const pinTask = async () => {
+    const newPin = !pin;
+    todoListAPI.pinTask(id, newPin)
+      .then((response) => {
+        setPin(newPin)
+        response.msg = newPin ? `Pinned ${title}` : `Unpinned ${title}`;
+        notify(response);
+      })
+      .catch((response) => {
+        notify(response)
+      })
+
   }
 
   const deleteTask = () => {
