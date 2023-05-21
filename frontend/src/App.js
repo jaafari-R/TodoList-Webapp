@@ -12,11 +12,15 @@ import { todoListAPI } from './api/TodoListAPI';
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [showEditForm, setShowEditForm] = useState(false);
+  const [editId, setEditId] = useState(0);
+  const [editTitle, setEditTitle] = useState("");
+  const [editDescription, setEditDescription] = useState("");
+
 
   useEffect(() => {
     todoListAPI.getAllTasks()
       .then((response) => {
-        console.log(response.tasks)
         setTasks(response.tasks);
       })
       .catch((err) => {
@@ -26,11 +30,18 @@ function App() {
   }, []);
 
   // TODO
-  const editTask = () => {
+  const editTask = (id, title, description) => {
+    setEditId(id);
+    setEditTitle(title);
+    setEditDescription(description);
+    setShowEditForm(true);
+    console.log(showEditForm)
+  }
 
-
-    const taskEdit = document.getElementById("taskEdit");
-    taskEdit.style.display = "block";
+  const cancleEdit = (e) => {
+    if(e)
+      e.preventDefault();
+    setShowEditForm(false);
   }
 
   /**
@@ -70,7 +81,10 @@ function App() {
         />)
       }
       <br />
-      <TaskEdit />
+      {
+        showEditForm &&
+        <TaskEdit taskId={editId} taskTitle={editTitle} taskDescription={editDescription} notify={notify} cancleEdit={cancleEdit}/>
+      }
       <Toaster
             position='bottom-center'
             toastOptions={{
