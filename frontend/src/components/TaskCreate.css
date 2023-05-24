@@ -26,6 +26,7 @@
 
 .create-taskDescription {
     height: 5rem;
+    resize: none;
 }
 
 .create-taskButton {

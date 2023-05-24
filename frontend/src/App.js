@@ -35,7 +35,6 @@ function App() {
     setEditTitle(title);
     setEditDescription(description);
     setShowEditForm(true);
-    console.log(showEditForm)
   }
 
   const cancleEdit = (e) => {
