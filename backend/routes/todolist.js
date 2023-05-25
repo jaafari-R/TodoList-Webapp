@@ -4,16 +4,16 @@ const Contoller = require('../contoller/todolist')
 const router = express.Router();
 
 router.get('/get', Contoller.getTasks);
-router.get('/get/:id', Contoller.getTask);
+router.get('/get/:_id', Contoller.getTask);
 
 router.post('/add', Contoller.addTask);
 
-router.put('/update/:id', Contoller.updateTask);
+router.put('/update/:_id', Contoller.updateTask);
 
-router.delete('/delete/:id', Contoller.deleteTask);
+router.delete('/delete/:_id', Contoller.deleteTask);
 
-router.put('/check/:id', Contoller.checkTask);
+router.put('/check/:_id', Contoller.checkTask);
 
-router.put('/pin/:id', Contoller.pinTask);
+router.put('/pin/:_id', Contoller.pinTask);
 
 module.exports = router;

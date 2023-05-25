@@ -8,8 +8,9 @@ const TodoListController = class {
         const description = req.body.description;
 
         await todoListModel.addTask(name, description)
-            .then((taskId) => {
-                res.status(201).json({success: true, taskId});
+            .then((newTask) => {
+                console.log("HMM", newTask)
+                res.status(201).json({success: true, newTask});
             })
             .catch(() => {
                 res.status(500).json({success: false, msg: "Failed to create task"});
@@ -28,7 +29,7 @@ const TodoListController = class {
 
     // TODO- add custom errors
     getTask(req, res) {
-        const taskId = Number(req.params.id)
+        const taskId = Number(req.params._id)
 
         todoListModel.getTask(taskId)
             .then((task) => 
@@ -42,7 +43,7 @@ const TodoListController = class {
 
     // TODO- add custom errors
     updateTask(req, res) {
-        const taskId = Number(req.params.id);
+        const taskId = Number(req.params._id);
         const title = req.body.title;
         const description = req.body.description;
 
@@ -57,7 +58,7 @@ const TodoListController = class {
 
     // TODO - add custom errors
     deleteTask(req, res) {
-        const taskId = Number(req.params.id);
+        const taskId = Number(req.params._id);
 
         todoListModel.deleteTask(taskId)
             .then(() => {
@@ -70,7 +71,7 @@ const TodoListController = class {
 
     // TODO - add custom errors
     checkTask(req, res) {
-        const taskId = Number(req.params.id);
+        const taskId = Number(req.params._id);
         const check = Boolean(req.body.check); // true indicates check / false indicates un-check
 
         todoListModel.checkTask(taskId, check)
@@ -84,7 +85,7 @@ const TodoListController = class {
 
     // TODO
     pinTask(req, res) {
-        const taskId = Number(req.params.id);
+        const taskId = Number(req.params._id);
         const pin = Boolean(req.body.pin); // true indicates pin / false indicates un-pin
 
         todoListModel.pinTask(taskId, pin)

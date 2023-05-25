@@ -2,33 +2,21 @@ taskModel = require('./models/task');
 
 const TodoListModel = class {
     
-    constructor() {
-        // Id Auto Increment
-        taskModel.findOne({}, {}, {sort: {'id': -1 } })
-            .then((lastDocument) => {
-                this.idAI = lastDocument.id + 1;
-            })
-            .catch((err) => {
-                this.idAI = 1
-            });
-    }
-
     /**
      * 
      * @param {String} title Task title
      * @param {String} description Task description
      *
-     * @returns the Id of the new task  / null on failure
+     * @returns The new task  / null on failure
     */
     addTask(title, description) {
         return new Promise((res, rej) => {
             new taskModel({
-                id: this.idAI,
                 title: title,
                 description: description
             }).save()
                 .then((task) => {
-                    res(this.idAI++);
+                    res(task);
                 })
                 .catch((err) => {
                     console.log("Failed to add Task\n", err, "\n");
@@ -56,13 +44,13 @@ const TodoListModel = class {
 
     /** TODO create custom errors
      * 
-     * @param {Number} id
+     * @param {ObjectId} _id Task Id
      * 
      * @returns a Task Object / null on failure
      */
-    getTask(id) {
+    getTask(_id) {
         return new Promise((res, rej) => {
-            taskModel.find({id: id})
+            taskModel.find({_id})
                 .then((task) => {
                     if(task.length != 0)
                         res(task[0]);
@@ -78,15 +66,15 @@ const TodoListModel = class {
 
     /** TODO - add custom errors
      * 
-     * @param {Number} id Task Id
+     * @param {ObjectId} _id Task Id
      * @param {String} title Task title
      * @param {String} description Task description
      * 
      * @returns true if the task was updated successfully / null otherwise
      */
-    async updateTask(id, title, description) {
+    async updateTask(_id, title, description) {
         return new Promise((res, rej) => {
-            taskModel.updateOne({id: id}, [ { $set: {title, description} } ])
+            taskModel.updateOne({_id}, [ { $set: {title, description} } ])
                 .then((db_res) => {
                     if(db_res.modifiedCount)
                         res(true);
@@ -105,13 +93,13 @@ const TodoListModel = class {
 
     /** TODO - add custom errors
      * 
-     * @param {Number} id Task Id
+     * @param {ObjectId} _id Task Id
      * 
      * @returns true if the task was deleted successfully / null otherwise
      */
-    async deleteTask(id) {
+    async deleteTask(_id) {
         return new Promise((res, rej) => {
-            taskModel.deleteOne({id: id})
+            taskModel.deleteOne({_id})
                 .then((db_res) => {
                     if(db_res.deletedCount)
                         res(true);
@@ -130,14 +118,14 @@ const TodoListModel = class {
 
     /** TODO - add custom errors
      * 
-     * @param {Number} id Task Id
+     * @param {ObjectId} _id Task Id
      * @param {Boolean} on check task ==> true | uncheck task ===> false 
      * 
      * @returns true if the task was checked/unchecked successfully / null otherwise
      */
-    checkTask(id, on) {
+    checkTask(_id, on) {
         return new Promise((res, rej) => {
-            taskModel.updateOne({id: id}, [ { $set: {checked: on} } ])
+            taskModel.updateOne({_id}, [ { $set: {checked: on} } ])
                 .then((db_res) => {
                     if(db_res.modifiedCount)
                         res(true);
@@ -156,12 +144,12 @@ const TodoListModel = class {
 
     /** TODO - add custom errors
      * 
-     * @param {Number} id Task Id
+     * @param {ObjectId} _id Task Id
      * @param {Boolean} on pin task ==> true | unpin task ===> false 
      */
-    pinTask(id, on) {
+    pinTask(_id, on) {
         return new Promise((res, rej) => {
-            taskModel.updateOne({id: id}, [ { $set: {pinned: on} } ])
+            taskModel.updateOne({_id}, [ { $set: {pinned: on} } ])
                 .then((db_res) => {
                     if(db_res.modifiedCount)
                         res(true);
