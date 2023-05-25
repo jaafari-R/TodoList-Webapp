@@ -7,7 +7,7 @@ import { todoListAPI } from '../api/TodoListAPI';
 import './TaskView.css'
 
 
-function TaskView({taskId, taskTitle, taskDescription, taskCheck, taskPin, editTask, notify, syncPinTask}) {
+function TaskView({taskId, taskTitle, taskDescription, taskCheck, taskPin, editTask, notify, syncPinTask, syncDeleteTask}) {
   const showEditForm = () => {
     editTask(taskId, taskTitle, taskDescription);
   }
@@ -31,6 +31,7 @@ function TaskView({taskId, taskTitle, taskDescription, taskCheck, taskPin, editT
 
     todoListAPI.deleteTask(taskId)
       .then((response) => {
+        syncDeleteTask(taskId)
         notify({...response, msg: `${taskTitle} was deleted`})
       })
       .catch((response) => {

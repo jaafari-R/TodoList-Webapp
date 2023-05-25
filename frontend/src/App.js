@@ -39,6 +39,9 @@ function App() {
   const syncPinTask = (taskId, taskPin) => {
     setTasks((currentTasks) => currentTasks.map(task => task._id === taskId ? {...task, pinned: taskPin} : task))
   }
+  const syncDeleteTask = (taskId) => {
+    setTasks((currentTasks) => currentTasks.filter(task => task._id !== taskId))
+  }
 
   const editTask = (id, title, description) => {
     setEditId(id);
@@ -88,6 +91,7 @@ function App() {
           editTask={editTask}
           notify={notify}
           syncPinTask={syncPinTask}
+          syncDeleteTask={syncDeleteTask}
         />)
       }
       <br />
