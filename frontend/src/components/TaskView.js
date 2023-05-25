@@ -7,7 +7,7 @@ import { todoListAPI } from '../api/TodoListAPI';
 import './TaskView.css'
 
 
-function TaskView({taskId, taskTitle, taskDescription, taskCheck, taskPin, editTask, notify}) {
+function TaskView({taskId, taskTitle, taskDescription, taskCheck, taskPin, editTask, notify, syncPinTask}) {
   const showEditForm = () => {
     editTask(taskId, taskTitle, taskDescription);
   }
@@ -16,9 +16,8 @@ function TaskView({taskId, taskTitle, taskDescription, taskCheck, taskPin, editT
     const newPin = !taskPin;
     todoListAPI.pinTask(taskId, newPin)
       .then((response) => {
-        // setPin(newPin)
-        response.msg = newPin ? `Pinned ${taskTitle}` : `Unpinned ${taskTitle}`;
-        notify(response);
+        syncPinTask(taskId, newPin)
+        notify({...response, msg: (newPin ? "Pinned " : "Unpinned ") + taskTitle});
       })
       .catch((response) => {
         notify(response)

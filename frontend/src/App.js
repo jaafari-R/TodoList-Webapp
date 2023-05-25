@@ -30,20 +30,14 @@ function App() {
   }, []);
 
   // - Sync after successful requests - \\
-
   const syncAddTask = (newTask) => {
     setTasks([...tasks, newTask]);
   }
   const syncEditTask = (taskId, taskTitle, taskDescription) => {
-    console.log(tasks)
     setTasks((currentTasks) => currentTasks.map(task => task._id === taskId ? {...task, title:taskTitle, description: taskDescription} : task))
-    // setInterval(() => {
-    //   console.log(newTasks)
-    //   setTasks([...newTasks])
-    // }, 1000);
-    // const newTasks = [...tasks];
-    // newTasks[index] = editedTask;
-    // setTasks(newTasks);
+  }
+  const syncPinTask = (taskId, taskPin) => {
+    setTasks((currentTasks) => currentTasks.map(task => task._id === taskId ? {...task, pinned: taskPin} : task))
   }
 
   const editTask = (id, title, description) => {
@@ -93,6 +87,7 @@ function App() {
           taskCheck={task.checked}
           editTask={editTask}
           notify={notify}
+          syncPinTask={syncPinTask}
         />)
       }
       <br />
