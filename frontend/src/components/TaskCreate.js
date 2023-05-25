@@ -23,7 +23,6 @@ function TaskCreate({addTask, notify}) {
         todoListAPI.createTask(taskTitle, taskDescription)
             .then((response) => {
                 notify({...response, msg: `Task ${response.newTask.title} was created successfully`});
-                console.log(response.newTask)
                 addTask(response.newTask)
             })
             .catch((response) => {

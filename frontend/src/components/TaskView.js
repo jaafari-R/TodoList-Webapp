@@ -8,22 +8,16 @@ import './TaskView.css'
 
 
 function TaskView({taskId, taskTitle, taskDescription, taskCheck, taskPin, editTask, notify}) {
-  const [id, setId] = useState(taskId);
-  const [title, setTitle] = useState(taskTitle);
-  const [description, setDescription] = useState(taskDescription);
-  const [check, setCheck] = useState(taskCheck);
-  const [pin, setPin] = useState(taskPin);
-
   const showEditForm = () => {
-    editTask(id, title, description);
+    editTask(taskId, taskTitle, taskDescription);
   }
 
   const pinTask = async () => {
-    const newPin = !pin;
-    todoListAPI.pinTask(id, newPin)
+    const newPin = !taskPin;
+    todoListAPI.pinTask(taskId, newPin)
       .then((response) => {
-        setPin(newPin)
-        response.msg = newPin ? `Pinned ${title}` : `Unpinned ${title}`;
+        // setPin(newPin)
+        response.msg = newPin ? `Pinned ${taskTitle}` : `Unpinned ${taskTitle}`;
         notify(response);
       })
       .catch((response) => {
@@ -33,15 +27,14 @@ function TaskView({taskId, taskTitle, taskDescription, taskCheck, taskPin, editT
   }
 
   const deleteTask = () => {
-    if(!window.confirm(`Are you sure you want to delete <${title}>`))
+    if(!window.confirm(`Are you sure you want to delete <${taskTitle}>`))
       return;
 
-    todoListAPI.deleteTask(id)
+    todoListAPI.deleteTask(taskId)
       .then((response) => {
-        notify({...response, msg: `${title} was deleted`})
+        notify({...response, msg: `${taskTitle} was deleted`})
       })
       .catch((response) => {
-        console.log(response)
         notify(response);
       })
   }
@@ -49,11 +42,11 @@ function TaskView({taskId, taskTitle, taskDescription, taskCheck, taskPin, editT
   return (
     <div className='view-task'>
       <div className="view-taskContent">
-        <h2>{title || "Unknown"}</h2>
-        <p>{description || "Unknown"}</p>
+        <h2>{taskTitle || "Unknown"}</h2>
+        <p>{taskDescription || "Unknown"}</p>
       </div>
       {
-        pin && <PushPinIcon onClick={pinTask} className='view-taskPin' /> || <PushPinOutlinedIcon onClick={pinTask} className='view-taskPin' />
+        taskPin && <PushPinIcon onClick={pinTask} className='view-taskPin' /> || <PushPinOutlinedIcon onClick={pinTask} className='view-taskPin' />
       }
       <button className='view-taskCheck'>Done</button>
       <button className='view-taskEdit' onClick={showEditForm}>Edit</button>

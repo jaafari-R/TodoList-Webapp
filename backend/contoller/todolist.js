@@ -9,7 +9,6 @@ const TodoListController = class {
 
         await todoListModel.addTask(name, description)
             .then((newTask) => {
-                console.log("HMM", newTask)
                 res.status(201).json({success: true, newTask});
             })
             .catch(() => {

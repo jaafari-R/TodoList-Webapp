@@ -3,17 +3,17 @@ import './TaskEdit.css'
 
 import { todoListAPI } from '../api/TodoListAPI';
 
-function TaskEdit({taskId, taskTitle, taskDescription, notify, cancleEdit}) {
+function TaskEdit({taskId, taskTitle, taskDescription, notify, cancleEdit, syncEditTask}) {
   const [id, setId] = useState(taskId);
   const [title, setTitle] = useState(taskTitle);
   const [description, setDescription] = useState(taskDescription);
 
   const editTask = (e) => {
     e.preventDefault();
-    console.log(id, title, description)
     todoListAPI.editTask(id, title, description)
       .then((response) => {
-        notify(response);
+        notify({...response, msg: `${title} was edited successfully`});
+        syncEditTask(id, title, description);
         cancleEdit();
       })
       .catch((response) => {

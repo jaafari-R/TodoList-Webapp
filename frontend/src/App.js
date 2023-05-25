@@ -29,12 +29,21 @@ function App() {
 
   }, []);
 
-  const addTask = (newTask) => {
+  // - Sync after successful requests - \\
+
+  const syncAddTask = (newTask) => {
     setTasks([...tasks, newTask]);
-    let i = 0;
+  }
+  const syncEditTask = (taskId, taskTitle, taskDescription) => {
+    console.log(tasks)
+    setTasks((currentTasks) => currentTasks.map(task => task._id === taskId ? {...task, title:taskTitle, description: taskDescription} : task))
     // setInterval(() => {
-    //   console.log(i++, "  ", tasks)      
+    //   console.log(newTasks)
+    //   setTasks([...newTasks])
     // }, 1000);
+    // const newTasks = [...tasks];
+    // newTasks[index] = editedTask;
+    // setTasks(newTasks);
   }
 
   const editTask = (id, title, description) => {
@@ -72,7 +81,7 @@ function App() {
 
   return (
     <div className="App">
-      <TaskCreate addTask={addTask} notify={notify}/>
+      <TaskCreate addTask={syncAddTask} notify={notify}/>
       <br />
       {tasks.map(task =>
         <TaskView
@@ -89,7 +98,13 @@ function App() {
       <br />
       {
         showEditForm &&
-        <TaskEdit taskId={editId} taskTitle={editTitle} taskDescription={editDescription} notify={notify} cancleEdit={cancleEdit}/>
+        <TaskEdit
+          taskId={editId} 
+          taskTitle={editTitle} 
+          taskDescription={editDescription} 
+          notify={notify} 
+          cancleEdit={cancleEdit}
+          syncEditTask={syncEditTask}/>
       }
       <Toaster
             position='bottom-center'
