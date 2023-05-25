@@ -5,7 +5,7 @@ import { todoListAPI } from '../api/TodoListAPI';
 import './TaskCreate.css'
 
 
-function TaskCreate() {
+function TaskCreate({addTask, notify}) {
     const [taskTitle, setTaskTitle] = useState("");
     const [taskDescription, setTaskDescription] = useState("");
 
@@ -20,7 +20,15 @@ function TaskCreate() {
      */ 
     const createTask = async (e) => {
         e.preventDefault();
-        todoListAPI.createTask(taskTitle, taskDescription);
+        todoListAPI.createTask(taskTitle, taskDescription)
+            .then((response) => {
+                notify({...response, msg: `Task ${response.newTask.title} was created successfully`});
+                console.log(response.newTask)
+                addTask(response.newTask)
+            })
+            .catch((response) => {
+                notify(response)
+            });
     }
 
   return (

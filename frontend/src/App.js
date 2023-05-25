@@ -29,7 +29,14 @@ function App() {
 
   }, []);
 
-  // TODO
+  const addTask = (newTask) => {
+    setTasks([...tasks, newTask]);
+    let i = 0;
+    // setInterval(() => {
+    //   console.log(i++, "  ", tasks)      
+    // }, 1000);
+  }
+
   const editTask = (id, title, description) => {
     setEditId(id);
     setEditTitle(title);
@@ -65,12 +72,12 @@ function App() {
 
   return (
     <div className="App">
-      <TaskCreate />
+      <TaskCreate addTask={addTask} notify={notify}/>
       <br />
       {tasks.map(task =>
         <TaskView
-          key={task.id}
-          taskId={task.id}
+          key={task._id}
+          taskId={task._id}
           taskTitle={task.title}
           taskDescription={task.description}
           taskPin={task.pinned}
