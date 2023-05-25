@@ -14,7 +14,7 @@ const TodoListAPI = class {
      * @returns a Promise depending on the api call response:
      *              - on success - data in the format: 
      *                  { success: true,
-     *                    taskId: {Number} }
+     *                    newTask: {_id, title, description, checked, pinned, __v} }
      *              - on failure - error in the format: { success: false, msg: {String} }
      *              - on no-response - undefined
      */
@@ -44,7 +44,7 @@ const TodoListAPI = class {
      * @returns a Promise depending on the api call response:
      *              - on success - data in the format: 
      *                  { success: true,
-     *                    tasks: [ {_id, id, title, description, checked, pinned, __v}, ...] }
+     *                    tasks: [ {_id, title, description, checked, pinned, __v}, ...] }
      *              - on failure - error in the format: { success: false, msg: {String} }
      *              - on no-response - undefined
      */
@@ -70,7 +70,7 @@ const TodoListAPI = class {
      * @returns a Promise depending on the api call response:
      *              - on success - data in the format: 
      *                  { success: true,
-     *                    task: {_id, id, title, description, checked, pinned, __v} }
+     *                    task: {_id, title, description, checked, pinned, __v} }
      *              - on failure - error in the format: { success: false, msg: {String} }
      *              - on no-response - undefined
      */
