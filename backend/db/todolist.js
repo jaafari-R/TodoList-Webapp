@@ -119,24 +119,24 @@ const TodoListModel = class {
     /** TODO - add custom errors
      * 
      * @param {ObjectId} _id Task Id
-     * @param {Boolean} on check task ==> true | uncheck task ===> false 
+     * @param {Boolean} on mark task ==> true | un-mark task ===> false 
      * 
-     * @returns true if the task was checked/unchecked successfully / null otherwise
+     * @returns true if the task was marked/unmarked successfully / null otherwise
      */
-    checkTask(_id, on) {
+    markTask(_id, on) {
         return new Promise((res, rej) => {
-            taskModel.updateOne({_id}, [ { $set: {checked: on} } ])
+            taskModel.updateOne({_id}, [ { $set: {marked: on} } ])
                 .then((db_res) => {
                     if(db_res.modifiedCount)
                         res(true);
                     else
                     {
-                        console.log("document unchanged or Failed to check/uncheck non-existing document in db\n");
+                        console.log("document unchanged or Failed to mark/unmark non-existing document in db\n");
                         rej(null);
                     }
                 })
                 .catch((err) => {
-                    console.log("Failed to check/uncheck task in the DB\n", err, "\n");
+                    console.log("Failed to mark/unmark task in the DB\n", err, "\n");
                     rej(null);
                 })
         })

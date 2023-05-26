@@ -14,7 +14,7 @@ const TodoListAPI = class {
      * @returns a Promise depending on the api call response:
      *              - on success - data in the format: 
      *                  { success: true,
-     *                    newTask: {_id, title, description, checked, pinned, __v} }
+     *                    newTask: {_id, title, description, marked, pinned, __v} }
      *              - on failure - error in the format: { success: false, msg: {String} }
      *              - on no-response - undefined
      */
@@ -44,7 +44,7 @@ const TodoListAPI = class {
      * @returns a Promise depending on the api call response:
      *              - on success - data in the format: 
      *                  { success: true,
-     *                    tasks: [ {_id, title, description, checked, pinned, __v}, ...] }
+     *                    tasks: [ {_id, title, description, marked, pinned, __v}, ...] }
      *              - on failure - error in the format: { success: false, msg: {String} }
      *              - on no-response - undefined
      */
@@ -70,7 +70,7 @@ const TodoListAPI = class {
      * @returns a Promise depending on the api call response:
      *              - on success - data in the format: 
      *                  { success: true,
-     *                    task: {_id, title, description, checked, pinned, __v} }
+     *                    task: {_id, title, description, marked, pinned, __v} }
      *              - on failure - error in the format: { success: false, msg: {String} }
      *              - on no-response - undefined
      */
@@ -158,9 +158,9 @@ const TodoListAPI = class {
     markTask(taskId, mark) {
         return new Promise((res, rej) => 
         {
-            this.axios.put(`/check/${taskId}`,
+            this.axios.put(`/mark/${taskId}`,
             {
-                check: mark
+                mark: mark
             })
             .then((response) => {
                 res(response.data);

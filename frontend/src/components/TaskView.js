@@ -7,7 +7,7 @@ import { todoListAPI } from '../api/TodoListAPI';
 import './TaskView.css'
 
 
-function TaskView({taskId, taskTitle, taskDescription, taskCheck, taskPin, editTask, notify, syncPinTask, syncDeleteTask}) {
+function TaskView({taskId, taskTitle, taskDescription, taskMark, taskPin, editTask, notify, syncPinTask, syncDeleteTask}) {
   const showEditForm = () => {
     editTask(taskId, taskTitle, taskDescription);
   }
@@ -48,7 +48,7 @@ function TaskView({taskId, taskTitle, taskDescription, taskCheck, taskPin, editT
       {
         taskPin && <PushPinIcon onClick={pinTask} className='view-taskPin' /> || <PushPinOutlinedIcon onClick={pinTask} className='view-taskPin' />
       }
-      <button className='view-taskCheck'>Done</button>
+      <button className='view-taskMark'>Done</button>
       <button className='view-taskEdit' onClick={showEditForm}>Edit</button>
       <button className='view-taskDelete' onClick={deleteTask}>Delete</button>
     </div>

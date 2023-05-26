@@ -42,6 +42,9 @@ function App() {
   const syncDeleteTask = (taskId) => {
     setTasks((currentTasks) => currentTasks.filter(task => task._id !== taskId))
   }
+  const syncMarkTask = (taskId, taskMark) => {
+    setTasks((currentTasks) => currentTasks.map(task => task._id === taskId ? {...task, marked: taskMark} : task))
+  }
 
   const editTask = (id, title, description) => {
     setEditId(id);
@@ -87,7 +90,7 @@ function App() {
           taskTitle={task.title}
           taskDescription={task.description}
           taskPin={task.pinned}
-          taskCheck={task.checked}
+          taskMark={task.marked}
           editTask={editTask}
           notify={notify}
           syncPinTask={syncPinTask}

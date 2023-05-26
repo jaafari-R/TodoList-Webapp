@@ -23,7 +23,7 @@
     right: 0.2em;
 }
 
-.view-taskCheck {
+.view-taskMark {
     position: absolute;
     top: 0.2em;
     right: 2.2em;
@@ -32,7 +32,7 @@
     padding: 0.5em;
 }
 
-.view-taskCheck:checked {
+.view-taskMark:marked {
     background-color: green;
 }
 

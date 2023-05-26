@@ -69,16 +69,16 @@ const TodoListController = class {
     }
 
     // TODO - add custom errors
-    checkTask(req, res) {
+    markTask(req, res) {
         const taskId = req.params._id;
-        const check = Boolean(req.body.check); // true indicates check / false indicates un-check
+        const mark = Boolean(req.body.mark); // true indicates mark / false indicates un-mark
 
-        todoListModel.checkTask(taskId, check)
+        todoListModel.markTask(taskId, mark)
             .then(() => {
                 res.status(200).json({success: true});
             })
             .catch(() => {
-                res.status(500).json({success: false, msg: "Failed to check task"});
+                res.status(500).json({success: false, msg: "Failed to mark task"});
             })
     }
 
