@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PushPinIcon from '@mui/icons-material/PushPin';
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 
@@ -7,7 +7,10 @@ import { todoListAPI } from '../api/TodoListAPI';
 import './TaskView.css'
 
 
-function TaskView({taskId, taskTitle, taskDescription, taskMark, taskPin, editTask, notify, syncPinTask, syncDeleteTask}) {
+function TaskView({taskId, taskTitle, taskDescription, taskMark, taskPin, 
+                    editTask, notify, 
+                    syncPinTask, syncDeleteTask, syncMarkTask}) {
+
   const showEditForm = () => {
     editTask(taskId, taskTitle, taskDescription);
   }
@@ -39,16 +42,28 @@ function TaskView({taskId, taskTitle, taskDescription, taskMark, taskPin, editTa
       })
   }
 
+  const markTask = () => {
+    const newMark = !taskMark;
+    todoListAPI.markTask(taskId, newMark)
+      .then((response) => {
+        syncMarkTask(taskId, newMark);
+        notify({...response, msg: (newMark ? "Marked" : "Un-Marked") + taskTitle});
+      })
+      .catch((response) => {
+        notify(response);
+      })
+  }
+
   return (
     <div className='view-task'>
       <div className="view-taskContent">
-        <h2>{taskTitle || "Unknown"}</h2>
+        <h2 className={'' + (taskMark ? 'marked' : '')}>{taskTitle || "Unknown"}</h2>
         <p>{taskDescription || "Unknown"}</p>
       </div>
       {
         taskPin && <PushPinIcon onClick={pinTask} className='view-taskPin' /> || <PushPinOutlinedIcon onClick={pinTask} className='view-taskPin' />
       }
-      <button className='view-taskMark'>Done</button>
+      <button className={'view-taskMark ' + (taskMark ? 'marked' : '')} onClick={markTask}>Done</button>
       <button className='view-taskEdit' onClick={showEditForm}>Edit</button>
       <button className='view-taskDelete' onClick={deleteTask}>Delete</button>
     </div>

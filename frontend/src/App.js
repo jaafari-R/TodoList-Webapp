@@ -95,6 +95,7 @@ function App() {
           notify={notify}
           syncPinTask={syncPinTask}
           syncDeleteTask={syncDeleteTask}
+          syncMarkTask={syncMarkTask}
         />)
       }
       <br />
