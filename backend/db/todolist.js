@@ -5,15 +5,13 @@ const TodoListModel = class {
     /**
      * 
      * @param {String} title Task title
-     * @param {String} description Task description
      *
      * @returns The new task  / null on failure
     */
-    addTask(title, description) {
+    addTask(title) {
         return new Promise((res, rej) => {
             new taskModel({
-                title: title,
-                description: description
+                title: title
             }).save()
                 .then((task) => {
                     res(task);
@@ -68,13 +66,12 @@ const TodoListModel = class {
      * 
      * @param {ObjectId} _id Task Id
      * @param {String} title Task title
-     * @param {String} description Task description
      * 
      * @returns true if the task was updated successfully / null otherwise
      */
-    async updateTask(_id, title, description) {
+    async updateTask(_id, title) {
         return new Promise((res, rej) => {
-            taskModel.updateOne({_id}, [ { $set: {title, description} } ])
+            taskModel.updateOne({_id}, [ { $set: {title} } ])
                 .then((db_res) => {
                     if(db_res.modifiedCount)
                         res(true);

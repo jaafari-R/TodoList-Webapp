@@ -4,10 +4,9 @@ todoListModel = require('../db/todolist')
 
 const TodoListController = class {
     async addTask (req, res) {
-        const name = req.body.title;
-        const description = req.body.description;
+        const title = req.body.title;
 
-        await todoListModel.addTask(name, description)
+        await todoListModel.addTask(title)
             .then((newTask) => {
                 res.status(201).json({success: true, newTask});
             })
@@ -44,9 +43,8 @@ const TodoListController = class {
     updateTask(req, res) {
         const taskId = req.params._id;
         const title = req.body.title;
-        const description = req.body.description;
 
-        todoListModel.updateTask(taskId, title, description)
+        todoListModel.updateTask(taskId, title)
             .then(() => {
                 res.status(200).json({success: true});
             })
