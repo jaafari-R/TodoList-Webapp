@@ -10,20 +10,18 @@ const TodoListAPI = class {
     /**
      * 
      * @param {String} taskTitle 
-     * @param {String} taskDescription
      * @returns a Promise depending on the api call response:
      *              - on success - data in the format: 
      *                  { success: true,
-     *                    newTask: {_id, title, description, marked, pinned, __v} }
+     *                    newTask: {_id, title, marked, pinned, __v} }
      *              - on failure - error in the format: { success: false, msg: {String} }
      *              - on no-response - undefined
      */
-    createTask(taskTitle, taskDescription) {
+    createTask(taskTitle) {
         return new Promise((res, rej) => {
             this.axios.post("/add",
                 {
                     title: taskTitle,
-                    description: taskDescription
                 }
             )
                 .then((response) => {
@@ -44,7 +42,7 @@ const TodoListAPI = class {
      * @returns a Promise depending on the api call response:
      *              - on success - data in the format: 
      *                  { success: true,
-     *                    tasks: [ {_id, title, description, marked, pinned, __v}, ...] }
+     *                    tasks: [ {_id, title, marked, pinned, __v}, ...] }
      *              - on failure - error in the format: { success: false, msg: {String} }
      *              - on no-response - undefined
      */
@@ -70,7 +68,7 @@ const TodoListAPI = class {
      * @returns a Promise depending on the api call response:
      *              - on success - data in the format: 
      *                  { success: true,
-     *                    task: {_id, title, description, marked, pinned, __v} }
+     *                    task: {_id, title, marked, pinned, __v} }
      *              - on failure - error in the format: { success: false, msg: {String} }
      *              - on no-response - undefined
      */
@@ -118,18 +116,16 @@ const TodoListAPI = class {
      * 
      * @param {Number} taskId 
      * @param {String} taskTitle 
-     * @param {String} taskDescription 
      * @returns a Promise depending on the api call response:
      *              - on success - success in the format: { success: true }
      *              - on failure - error in the format: { success: false, msg: {String} }
      *              - on no-response - undefined
      */
-    editTask(taskId, taskTitle, taskDescription) {
+    editTask(taskId, taskTitle) {
         return new Promise((res, rej) => {
             this.axios.put("/update/" + taskId,
                 {
                     title: taskTitle,
-                    description: taskDescription
                 }
             )
             .then((response) => {

@@ -15,8 +15,6 @@ function App() {
   const [showEditForm, setShowEditForm] = useState(false);
   const [editId, setEditId] = useState(0);
   const [editTitle, setEditTitle] = useState("");
-  const [editDescription, setEditDescription] = useState("");
-
 
   useEffect(() => {
     todoListAPI.getAllTasks()
@@ -33,8 +31,8 @@ function App() {
   const syncAddTask = (newTask) => {
     setTasks([...tasks, newTask]);
   }
-  const syncEditTask = (taskId, taskTitle, taskDescription) => {
-    setTasks((currentTasks) => currentTasks.map(task => task._id === taskId ? {...task, title:taskTitle, description: taskDescription} : task))
+  const syncEditTask = (taskId, taskTitle) => {
+    setTasks((currentTasks) => currentTasks.map(task => task._id === taskId ? {...task, title:taskTitle} : task))
   }
   const syncPinTask = (taskId, taskPin) => {
     setTasks((currentTasks) => currentTasks.map(task => task._id === taskId ? {...task, pinned: taskPin} : task))
@@ -46,10 +44,9 @@ function App() {
     setTasks((currentTasks) => currentTasks.map(task => task._id === taskId ? {...task, marked: taskMark} : task))
   }
 
-  const editTask = (id, title, description) => {
+  const editTask = (id, title) => {
     setEditId(id);
     setEditTitle(title);
-    setEditDescription(description);
     setShowEditForm(true);
   }
 
@@ -88,7 +85,6 @@ function App() {
           key={task._id}
           taskId={task._id}
           taskTitle={task.title}
-          taskDescription={task.description}
           taskPin={task.pinned}
           taskMark={task.marked}
           editTask={editTask}
@@ -104,7 +100,6 @@ function App() {
         <TaskEdit
           taskId={editId} 
           taskTitle={editTitle} 
-          taskDescription={editDescription} 
           notify={notify} 
           cancleEdit={cancleEdit}
           syncEditTask={syncEditTask}/>

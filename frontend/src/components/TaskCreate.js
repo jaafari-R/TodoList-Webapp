@@ -7,7 +7,6 @@ import './TaskCreate.css'
 
 function TaskCreate({addTask, notify}) {
     const [taskTitle, setTaskTitle] = useState("");
-    const [taskDescription, setTaskDescription] = useState("");
 
     const handleChange = (setState) => (e) => {
         setState(e.target.value);
@@ -20,7 +19,7 @@ function TaskCreate({addTask, notify}) {
      */ 
     const createTask = async (e) => {
         e.preventDefault();
-        todoListAPI.createTask(taskTitle, taskDescription)
+        todoListAPI.createTask(taskTitle)
             .then((response) => {
                 notify({...response, msg: `Task ${response.newTask.title} was created successfully`});
                 addTask(response.newTask)
@@ -35,8 +34,6 @@ function TaskCreate({addTask, notify}) {
         <form className="create-task" action="">
             <h1>Create a Task</h1>
             <input className="create-taskTitle" id="taskTitle" type="text" value={taskTitle} onChange={handleChange(setTaskTitle)} placeholder='Task Title'/>
-            <br />
-            <textarea className="create-taskDescription" name="taskDescription" id="taskDescription" cols="30" rows="10" value={taskDescription} onChange={handleChange(setTaskDescription)} placeholder='Task Description'></textarea>
             <br />
             <button className="create-taskButton" onClick={createTask}>Create Task</button>
         </form>

@@ -24,11 +24,6 @@
     text-align: center;
 }
 
-.create-taskDescription {
-    height: 5rem;
-    resize: none;
-}
-
 .create-taskButton {
     background: #39e68f;
     color: #501d1d;

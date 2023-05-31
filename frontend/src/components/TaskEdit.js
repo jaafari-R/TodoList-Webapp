@@ -3,17 +3,16 @@ import './TaskEdit.css'
 
 import { todoListAPI } from '../api/TodoListAPI';
 
-function TaskEdit({taskId, taskTitle, taskDescription, notify, cancleEdit, syncEditTask}) {
+function TaskEdit({taskId, taskTitle, notify, cancleEdit, syncEditTask}) {
   const [id, setId] = useState(taskId);
   const [title, setTitle] = useState(taskTitle);
-  const [description, setDescription] = useState(taskDescription);
 
   const editTask = (e) => {
     e.preventDefault();
-    todoListAPI.editTask(id, title, description)
+    todoListAPI.editTask(id, title)
       .then((response) => {
         notify({...response, msg: `${title} was edited successfully`});
-        syncEditTask(id, title, description);
+        syncEditTask(id, title);
         cancleEdit();
       })
       .catch((response) => {
@@ -32,8 +31,6 @@ function TaskEdit({taskId, taskTitle, taskDescription, notify, cancleEdit, syncE
         <h1>Edit Task</h1>
         <br />
         <input className='edit-taskTitle' value={title} onChange={handleChange(setTitle)} placeholder='Task Title' name="taskTitle" type="text" />
-        <br />
-        <textarea className="edit-taskDescription" value={description} onChange={handleChange(setDescription)} placeholder='Task Description' name="taskDescription" cols="30" rows="10" ></textarea>
         <br />
         <button onClick={editTask}>Edit Task</button>
         <button onClick={cancleEdit}>Cancle</button>
