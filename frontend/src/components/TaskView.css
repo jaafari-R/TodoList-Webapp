@@ -1,4 +1,6 @@
 .view-task {
+    background-color: bisque;
+    margin: 1em;
     position: relative;
     border: solid 0.2em;
     border-radius: 1em;
@@ -12,8 +14,9 @@
 
 }
 
-.view-taskContent h2 {
-    margin: 0;
+.view-taskTitle {
+    display: inline-block;
+    width: 80%;
     text-align: center;
 }
 
@@ -40,16 +43,8 @@ h2.marked {
     text-decoration: line-through 0.15em;
 }
 
-.view-taskDelete, .view-taskEdit {
-    width: 50%;
-    margin: 0;
-    border: none;
-    border-top: solid 0.1em;
-}
-
 .view-taskDelete {
-    border-bottom-right-radius: 1em;
-    background-color: rgb(252, 100, 100);
+    /* background-color: rgb(252, 100, 100); */
 }
 
 .view-taskDelete:hover {
@@ -57,8 +52,7 @@ h2.marked {
 }
 
 .view-taskEdit {
-    border-bottom-left-radius: 1em;
-    background-color: rgb(255, 255, 152);
+    /* background-color: rgb(255, 255, 152); */
 }
 
 .view-taskEdit:hover {

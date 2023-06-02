@@ -1,6 +1,9 @@
 import React from 'react'
+
 import PushPinIcon from '@mui/icons-material/PushPin';
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 
 import { todoListAPI } from '../api/TodoListAPI';
 
@@ -56,15 +59,13 @@ function TaskView({taskId, taskTitle, taskMark, taskPin,
 
   return (
     <div className='view-task'>
-      <div className="view-taskContent">
-        <h2 className={'' + (taskMark ? 'marked' : '')}>{taskTitle || "Unknown"}</h2>
-      </div>
+        <h2 className={'view-taskTitle ' + (taskMark ? 'marked' : '')}>{taskTitle || "Unknown"}</h2>
       {
         taskPin && <PushPinIcon onClick={pinTask} className='view-taskPin' /> || <PushPinOutlinedIcon onClick={pinTask} className='view-taskPin' />
       }
-      <button className={'view-taskMark ' + (taskMark ? 'marked' : '')} onClick={markTask}>Done</button>
-      <button className='view-taskEdit' onClick={showEditForm}>Edit</button>
-      <button className='view-taskDelete' onClick={deleteTask}>Delete</button>
+      <EditOutlinedIcon className='view-taskEdit' onClick={showEditForm} />
+      <DeleteForeverOutlinedIcon className='view-taskDelete' onClick={deleteTask}/>
+      <input type="checkbox" className={'view-taskMark ' + (taskMark ? 'marked' : '')} onClick={markTask}/>
     </div>
   )
 }
