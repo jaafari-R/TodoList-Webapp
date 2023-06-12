@@ -1,31 +1,33 @@
 .create-task {
-    background-color: #eee;
-    border: solid .2rem;
-    border-radius: 3rem;
-    padding: 2rem;
-    padding-top: 0rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border: 0.12em solid #777;
+    border-radius: 1em;
+    padding: 2em;
 }
 
-.create-task input, .create-task button, .create-task textarea {
-    margin: .4rem;
-    padding: .8rem;
-    width: 100%;
-    border-radius: .8rem;
-    line-height: 1.2rem;
-    letter-spacing: .04rem;
+.create-task > h1 {
+    margin-top: 0;
+    color: #333;
 }
 
-.create-task h1 {
-    margin-top: 0.5rem;
+.create-task > input {
+    margin-bottom: 1.5em;
+    background-color: #d1deff22;
+    color: #1a2a50;
+}
+
+.create-task >  button {
+    background-color: #a6bfff;
+}
+
+.create-task > input, .create-task >  button {
     text-align: center;
-}
-
-.create-taskTitle {
-    text-align: center;
-}
-
-.create-taskButton {
-    background: #39e68f;
-    color: #501d1d;
+    width: 90%;
+    height: 2em;
+    border-radius: 0.5em;
+    font-size: large;
     font-weight: 600;
 }
