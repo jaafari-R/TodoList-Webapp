@@ -9,18 +9,29 @@
 }
 
 .create-task > h1 {
-    margin-top: 0;
+    margin-bottom: 0.6em;
     color: #333;
 }
 
 .create-task > input {
     margin-bottom: 1.5em;
     background-color: #d1deff22;
-    color: #1a2a50;
+    color: #253b6e;
+}
+
+.create-task > input:focus {
+    color: black;
 }
 
 .create-task >  button {
-    background-color: #a6bfff;
+    color: white;
+    background-color: #034afe;
+    cursor: pointer;
+}
+
+.create-task >  button:hover {
+    color: black;
+    background-color: #4479ff;
 }
 
 .create-task > input, .create-task >  button {

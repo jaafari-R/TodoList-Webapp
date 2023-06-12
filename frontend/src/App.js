@@ -77,9 +77,8 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="app">
       <TaskCreate addTask={syncAddTask} notify={notify}/>
-      <br />
       {tasks.map(task =>
         <TaskView
           key={task._id}
@@ -94,7 +93,6 @@ function App() {
           syncMarkTask={syncMarkTask}
         />)
       }
-      <br />
       {
         showEditForm &&
         <TaskEdit
@@ -105,16 +103,16 @@ function App() {
           syncEditTask={syncEditTask}/>
       }
       <Toaster
-            position='bottom-center'
-            toastOptions={{
-                success: {
-                    duration: 5000
-                },
-                error: {
-                    duration: 3000
-                }
-            }}
-        />
+        position='bottom-center'
+        toastOptions={{
+          success: {
+            duration: 5000
+          },
+          error: {
+            duration: 3000
+          }
+        }}
+      />
     </div>
   );
 }
