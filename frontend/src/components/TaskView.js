@@ -13,7 +13,6 @@ import './TaskView.css'
 function TaskView({taskId, taskTitle, taskMark, taskPin, 
                     editTask, notify, 
                     syncPinTask, syncDeleteTask, syncMarkTask}) {
-
   const showEditForm = () => {
     editTask(taskId, taskTitle);
   }
@@ -59,13 +58,35 @@ function TaskView({taskId, taskTitle, taskMark, taskPin,
 
   return (
     <div className='view-task'>
-        <h2 className={'view-taskTitle ' + (taskMark ? 'marked' : '')}>{taskTitle || "Unknown"}</h2>
+      <input 
+        type="checkbox"
+        onClick={markTask}
+      />
+      <h2 
+        className={(taskMark ? 'marked' : '')}>
+          {taskTitle || "Unknown"}
+      </h2>
+      <div className="view-buttons">
+      <EditOutlinedIcon 
+        className='view-editButton'
+        onClick={showEditForm} 
+      />
+      <DeleteForeverOutlinedIcon 
+        className='view-deleteButton' 
+        onClick={deleteTask}
+      />
       {
-        taskPin && <PushPinIcon onClick={pinTask} className='view-taskPin' /> || <PushPinOutlinedIcon onClick={pinTask} className='view-taskPin' />
+        taskPin && 
+        <PushPinIcon 
+          onClick={pinTask} 
+          className='view-pinButton' 
+        /> || 
+        <PushPinOutlinedIcon 
+          onClick={pinTask} 
+          className='view-pinButton'
+        />
       }
-      <EditOutlinedIcon className='view-taskEdit' onClick={showEditForm} />
-      <DeleteForeverOutlinedIcon className='view-taskDelete' onClick={deleteTask}/>
-      <input type="checkbox" className={'view-taskMark ' + (taskMark ? 'marked' : '')} onClick={markTask}/>
+      </div>
     </div>
   )
 }

@@ -1,60 +1,41 @@
 .view-task {
-    background-color: bisque;
-    margin: 1em;
-    position: relative;
-    border: solid 0.2em;
-    border-radius: 1em;
-    padding: 0;
+    display: flex;
+    margin-top: 2.5em;
+    padding: 1em;
+    border: 0.2em solid #333;
+    border-radius: 0.5em;
+    background-color: rgb(151, 255, 218);
 }
 
-.view-taskContent {
-    padding: 0em;
-    padding-inline: 3em;
-    margin-top: 0.5rem;
-
+.view-task > input[type=checkbox] {
+    zoom: 1.5;
 }
 
-.view-taskTitle {
-    display: inline-block;
-    width: 80%;
+.view-task > h2 {
+    flex: 0.9;
     text-align: center;
+    color: #222;
 }
 
-.view-taskPin {
-    position: absolute;
-    top: 0.2em;
-    right: 0.2em;
+.marked {
+    text-decoration: line-through 0.15em black;
 }
 
-.view-taskMark {
-    position: absolute;
-    top: 0.2em;
-    right: 2.2em;
-    border: none;
-    border-radius: 1em;
-    padding: 0.5em;
+.view-buttons {
+    flex: 0.1;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
 }
 
-button.marked {
-    background-color: green;
+.view-editButton, .view-deleteButton, .view-pinButton {
+    cursor: pointer;
 }
 
-h2.marked {
-    text-decoration: line-through 0.15em;
+.view-editButton:hover {
+    background-color: #f6ff74;
 }
 
-.view-taskDelete {
-    /* background-color: rgb(252, 100, 100); */
-}
-
-.view-taskDelete:hover {
-    background-color: rgb(250, 78, 78);
-}
-
-.view-taskEdit {
-    /* background-color: rgb(255, 255, 152); */
-}
-
-.view-taskEdit:hover {
-    background-color: rgb(252, 252, 83);
+.view-deleteButton:hover {
+    background-color: #ff5c5c;
 }
