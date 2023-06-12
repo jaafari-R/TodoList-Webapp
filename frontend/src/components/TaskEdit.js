@@ -29,9 +29,24 @@ function TaskEdit({taskId, taskTitle, notify, cancleEdit, syncEditTask}) {
       <div className='page-cover'></div>
       <form className='edit-task' action="">
         <h1>Edit Task</h1>
-        <input value={title} onChange={handleChange(setTitle)} placeholder='Task Title' name="taskTitle" type="text" />
-        <button onClick={editTask} type='submit' className='edit-submit'>Edit Task</button>
-        <button onClick={cancleEdit} className='edit-cancle'>Cancle</button>
+        <input 
+          value={title} 
+          onChange={handleChange(setTitle)} 
+          placeholder='Task Title' 
+          name="taskTitle" 
+          type="text" 
+        />
+        <button 
+          onClick={editTask} 
+          type='submit' 
+          className='edit-submit'>
+            Edit Task
+        </button>
+        <button 
+          onClick={cancleEdit} 
+          className='edit-cancle'>
+            Cancle
+        </button>
       </form>
     </div>
   )
