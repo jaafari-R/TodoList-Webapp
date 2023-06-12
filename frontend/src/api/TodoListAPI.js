@@ -3,7 +3,7 @@ import axios from 'axios';
 const TodoListAPI = class {
     constructor() {
         this.axios = axios.create({
-            baseURL: "http://127.0.0.1:5000/api/v1/todolist"
+            baseURL: "http://192.168.0.112:5000/api/v1/todolist"
         });
     }
 

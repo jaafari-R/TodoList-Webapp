@@ -17,6 +17,7 @@
     margin-bottom: 1.5em;
     background-color: #d1deff22;
     color: #253b6e;
+    outline-color: #333;
 }
 
 .create-task > input:focus {
