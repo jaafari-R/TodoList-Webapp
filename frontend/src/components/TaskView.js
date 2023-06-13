@@ -61,6 +61,7 @@ function TaskView({taskId, taskTitle, taskMark, taskPin,
       <input 
         type="checkbox"
         onClick={markTask}
+        checked={taskMark}
       />
       <h2 
         className={(taskMark ? 'marked' : '')}>
@@ -76,11 +77,11 @@ function TaskView({taskId, taskTitle, taskMark, taskPin,
         onClick={deleteTask}
       />
       {
-        taskPin && 
+        (taskPin && 
         <PushPinIcon 
           onClick={pinTask} 
           className='view-pinButton' 
-        /> || 
+        />) || 
         <PushPinOutlinedIcon 
           onClick={pinTask} 
           className='view-pinButton'
