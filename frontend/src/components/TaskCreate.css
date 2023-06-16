@@ -1,41 +1,41 @@
-.create-task {
+.task-create {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #fff;
+    background-color: #effff6;
     border: 0.12em solid #777;
     border-radius: 1em;
     padding: 2em;
 }
 
-.create-task > h1 {
+.task-create > h1 {
     margin-bottom: 0.6em;
     color: #333;
 }
 
-.create-task > input {
+.task-create > input {
     margin-bottom: 1.5em;
     background-color: #d1deff22;
     color: #253b6e;
     outline-color: #333;
 }
 
-.create-task > input:focus {
+.task-create > input:focus {
     color: black;
 }
 
-.create-task >  button {
+.task-create >  button {
     color: white;
-    background-color: #034afe;
+    background-color: #0f984b;
     cursor: pointer;
 }
 
-.create-task >  button:hover {
-    color: black;
-    background-color: #4479ff;
+.task-create >  button:hover {
+    /* color: black; */
+    background-color: #063267ee;
 }
 
-.create-task > input, .create-task >  button {
+.task-create > input, .task-create >  button {
     text-align: center;
     width: 90%;
     height: 2em;

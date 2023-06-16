@@ -8,7 +8,7 @@
     z-index: 1;
 }
 
-.edit-task {
+.taskEdit {
     z-index: 2;
     position: fixed;
     top: 20%;
@@ -22,43 +22,43 @@
     padding: 2em;
 }
 
-.edit-task > h1 {
+.taskEdit > h1 {
     margin-bottom: 0.6em;
     color: #333;
 }
 
-.edit-task > input {
+.taskEdit > input {
     margin-bottom: 1.5em;
     background-color: #d1deff22;
     color: #253b6e;
     outline-color: #333;
 }
 
-.edit-task > input:focus {
+.taskEdit > input:focus {
     color: black;
 }
 
-.edit-task > button {
+.taskEdit > button {
     cursor: pointer;
 }
 
-.edit-submit {
+.taskEdit-submit {
     margin-bottom: 0.5em;
     color: white;
     background-color: #034afe;
 }
 
-.edit-submit:hover {
+.taskEdit-submit:hover {
     color: black;
     background-color: #4479ff;
 }
 
-.edit-cancle:hover {
+.taskEdit-cancle:hover {
     color: white;
     background-color: #999;
 }
 
-.edit-task > input, .edit-task >  button {
+.taskEdit > input, .taskEdit >  button {
     text-align: center;
     width: 90%;
     height: 2em;

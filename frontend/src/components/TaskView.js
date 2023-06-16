@@ -57,7 +57,7 @@ function TaskView({taskId, taskTitle, taskMark, taskPin,
   }
 
   return (
-    <div className='view-task'>
+    <div className='taskView'>
       <input 
         type="checkbox"
         onClick={markTask}
@@ -67,24 +67,24 @@ function TaskView({taskId, taskTitle, taskMark, taskPin,
         className={(taskMark ? 'marked' : '')}>
           {taskTitle || "Unknown"}
       </h2>
-      <div className="view-buttons">
+      <div className="taskView-buttons">
       <EditOutlinedIcon 
-        className='view-editButton'
+        className='taskView-editButton'
         onClick={showEditForm} 
       />
       <DeleteForeverOutlinedIcon 
-        className='view-deleteButton' 
+        className='taskView-deleteButton' 
         onClick={deleteTask}
       />
       {
         (taskPin && 
         <PushPinIcon 
           onClick={pinTask} 
-          className='view-pinButton' 
+          className='taskView-pinButton' 
         />) || 
         <PushPinOutlinedIcon 
           onClick={pinTask} 
-          className='view-pinButton'
+          className='taskView-pinButton'
         />
       }
       </div>

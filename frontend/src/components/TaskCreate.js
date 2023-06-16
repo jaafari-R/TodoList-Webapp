@@ -35,7 +35,7 @@ function TaskCreate({addTask, notify}) {
 
   return (
     <div>
-			<form className="create-task" action="">
+			<form className="task-create" action="">
 				<h1>Create a Task</h1>
 				<input 
 					value={taskTitle} 

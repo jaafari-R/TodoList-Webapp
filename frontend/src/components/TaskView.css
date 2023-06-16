@@ -1,41 +1,41 @@
-.view-task {
+.taskView {
     display: flex;
     margin-top: 2.5em;
     padding: 1em;
     border: 0.2em solid #333;
     border-radius: 0.5em;
-    background-color: rgb(151, 255, 218);
+    background-color: #258750;
 }
 
-.view-task > input[type=checkbox] {
+.taskView > input[type=checkbox] {
     zoom: 1.5;
 }
 
-.view-task > h2 {
+.taskView > h2 {
     flex: 0.9;
     text-align: center;
-    color: #222;
+    color: rgb(255, 240, 240);
 }
 
 .marked {
     text-decoration: line-through 0.15em black;
 }
 
-.view-buttons {
+.taskView-buttons {
     flex: 0.1;
     display: flex;
     width: 100%;
     justify-content: space-evenly;
 }
 
-.view-editButton, .view-deleteButton, .view-pinButton {
+.taskView-editButton, .taskView-deleteButton, .taskView-pinButton {
     cursor: pointer;
 }
 
-.view-editButton:hover {
+.taskView-editButton:hover {
     background-color: #f6ff74;
 }
 
-.view-deleteButton:hover {
+.taskView-deleteButton:hover {
     background-color: #ff5c5c;
 }

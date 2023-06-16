@@ -27,7 +27,7 @@ function TaskEdit({taskId, taskTitle, notify, cancleEdit, syncEditTask}) {
   return (
     <div id='taskEdit'>
       <div className='page-cover'></div>
-      <form className='edit-task' action="">
+      <form className='taskEdit' action="">
         <h1>Edit Task</h1>
         <input 
           value={title} 
@@ -39,12 +39,12 @@ function TaskEdit({taskId, taskTitle, notify, cancleEdit, syncEditTask}) {
         <button 
           onClick={editTask} 
           type='submit' 
-          className='edit-submit'>
+          className='taskEdit-submit'>
             Edit Task
         </button>
         <button 
           onClick={cancleEdit} 
-          className='edit-cancle'>
+          className='taskEdit-cancle'>
             Cancle
         </button>
       </form>
