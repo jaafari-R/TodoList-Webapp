@@ -1,7 +1,10 @@
-import { Application } from 'express';
+import { Application, json, urlencoded } from 'express';
+/* Security Middleware */
 import cors from 'cors';
 import hpp from 'hpp';
 import helmet from 'helmet';
+/* Standard Middleware */
+import compression from 'compression';
 
 export class TodoListServer {
     private app: Application;
@@ -17,7 +20,9 @@ export class TodoListServer {
     }
 
     private standardMiddleware(): void {
-
+        this.app.use(compression());
+        this.app.use(json({ limit: '1mb'}));
+        this.app.use(urlencoded({extended: true, limit: '2mb'}));
     }
 
     private securityMiddleware(): void {
