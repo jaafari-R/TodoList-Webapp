@@ -18,6 +18,7 @@ export class TodoListServer {
 
     public start(): void {
         this.standardMiddleware();
+        this.securityMiddleware();
         this.errorHandler();
         this.startServer();
     }
